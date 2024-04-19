@@ -11,15 +11,28 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Section One
 
 ```{r student1}
-student1 = c(1, 2, 3)
-student1
+
 ```
 
 
 ## Section Two
 
 ```{r student2}
+library(readxl)
+library(tigris)
+library(ggplot2)
 
+SuffixDetails <- read_excel("a4e6fc047c0dfe52c20ff1688520eeea-9d41c8f091916cefbf5651fda89faa1f506d6951/a4e6fc047c0dfe52c20ff1688520eeea-9d41c8f091916cefbf5651fda89faa1f506d6951/SuffixDetails.xlsx")
+
+counties <- counties(c("Alabama","Arizona", "Arkansas", "California","Colorado", "Connecticut", "Delware", "Florida", "Georgia", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin","Wyoming"), cb = TRUE)
+
+USA <- ggplot() +
+    geom_sf(data = counties)
+
+USA
+
+View(counties)
+View(SuffixDetails)
 ```
 
 ## Section Three
