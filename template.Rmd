@@ -11,8 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Section One
 
 ```{r student1}
-student1 = c(1, 2, 3)
-student1
+
 ```
 
 
