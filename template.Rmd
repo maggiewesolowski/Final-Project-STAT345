@@ -39,8 +39,16 @@ library(tidyr)
 url="https://www2.census.gov/geo/tiger/TIGER2023/ROADS/"
 x=readLines(url)
 GEOID_url=x %>% str_extract(pattern="tl_2023_\\d{5}_roads.zip")
-GEOID_url=na.omit(GEOID)
+GEOID_url=na.omit(GEOID_url)
 GEOID=GEOID_url %>% str_extract(pattern="\\d{5}")
+
+
+
+url1=paste0(GEOID_url[1])
+url11=str_c("https://www2.census.gov/geo/tiger/TIGER2023/ROADS/",url1)
+d=download.file(url11,dest="data.zip",method="auto")
+unzip("data.zip")
+
 
 
 ```
