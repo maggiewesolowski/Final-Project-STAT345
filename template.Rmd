@@ -33,5 +33,15 @@ student1
 ## Section Four
 
 ```{r student4}
+library(rvest)
+library(stringr)
+library(tidyr)
+url="https://www2.census.gov/geo/tiger/TIGER2023/ROADS/"
+x=readLines(url)
+GEOID_url=x %>% str_extract(pattern="tl_2023_\\d{5}_roads.zip")
+GEOID_url=na.omit(GEOID)
+GEOID=GEOID_url %>% str_extract(pattern="\\d{5}")
+
 
 ```
+
