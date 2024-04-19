@@ -25,6 +25,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r student3}
 
+
 ```
 
 
@@ -49,6 +50,11 @@ d=download.file(url11,dest="data.zip",method="auto")
 unzip("data.zip")
 
 
+
+```
+```{r}
+library(sf)
+read_sf("tl_2023_01001_roads.shp")
 
 ```
 
