@@ -11,7 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Section One
 
 ```{r student1}
-
+student1 = c(1, 2, 3)
+student1
 ```
 
 
@@ -35,19 +36,40 @@ knitr::opts_chunk$set(echo = TRUE)
 library(rvest)
 library(stringr)
 library(tidyr)
+library(sf)
+
+
+
 url="https://www2.census.gov/geo/tiger/TIGER2023/ROADS/"
 x=readLines(url)
 GEOID_url=x %>% str_extract(pattern="tl_2023_\\d{5}_roads.zip")
 GEOID_url=na.omit(GEOID_url)
 GEOID=GEOID_url %>% str_extract(pattern="\\d{5}")
 
-
-
 url1=paste0(GEOID_url[1])
 url11=str_c("https://www2.census.gov/geo/tiger/TIGER2023/ROADS/",url1)
 d=download.file(url11,dest="data.zip",method="auto")
 unzip("data.zip")
 
+
+h=read_sf("tl_2023_01001_roads.shp")
+h
+h1=h$FULLNAME
+h1=na.omit(h1)
+head(h1)
+
+Road_suffixes=c("Rd","Co Rd","Ln","St","Dr","Ct","Ave","Cir")
+roads=function(x) {
+  h1 %>% str_which(.,x)
+}
+
+g=sapply(Road_suffixes,roads)
+
+most=max(length(g$Rd),
+    length(g$`Co Rd`),length(g$Ln),length(g$St),length(g$Dr),length(g$Ct),length(g$Ave),length(g$Cir))
+
+most_common=Road_suffixes[which(max(length(g$Rd),
+    length(g$`Co Rd`),length(g$Ln),length(g$St),length(g$Dr),length(g$Ct),length(g$Ave),length(g$Cir))==most)]
 
 
 ```
