@@ -68,11 +68,6 @@ read_sf("tl_2023_01003_roads.shp")
 read_sf("tl_2023_01005_roads.shp")
 read_sf("tl_2023_19139_roads.shp")
 
-
-#reads each file to get data
-  # sf_path=list.files(pattern = "shp$", full.names = TRUE)
-  # print(sf_path)
-
 ```
 
 
