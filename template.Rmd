@@ -38,8 +38,6 @@ library(stringr)
 library(tidyr)
 library(sf)
 
-
-
 url="https://www2.census.gov/geo/tiger/TIGER2023/ROADS/"
 x=readLines(url)
 GEOID_url=x %>% str_extract(pattern="tl_2023_\\d{5}_roads.zip")
@@ -50,7 +48,6 @@ url1=paste0(GEOID_url[1])
 url11=str_c("https://www2.census.gov/geo/tiger/TIGER2023/ROADS/",url1)
 d=download.file(url11,dest="data.zip",method="auto")
 unzip("data.zip")
-
 
 h=read_sf("tl_2023_01001_roads.shp")
 h
