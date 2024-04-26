@@ -11,8 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Section One
 
 ```{r student1}
-student1 = c(1, 2, 3)
-student1
+
 ```
 
 
@@ -38,21 +37,14 @@ library(rvest)
 library(stringr)
 library(tidyr)
 library(sf)
-<<<<<<< HEAD
 library(tidyverse)
-url="https://www2.census.gov/geo/tiger/TIGER2023/ROADS/.zip"
-=======
-
-
 
 url="https://www2.census.gov/geo/tiger/TIGER2023/ROADS/"
->>>>>>> 9fceb23525d346fb9732e2602bd60c274745c617
 x=readLines(url)
 GEOID_url=x %>% str_extract(pattern="tl_2023_\\d{5}_roads.shp")
 GEOID_url=na.omit(GEOID_url)
 GEOID=GEOID_url %>% str_extract(pattern="\\d{5}")
 
-<<<<<<< HEAD
 #gets all the GEOID's
 my_sf2 = list()
 for(i in 1:3){
@@ -66,23 +58,10 @@ for(i in 1:3){
   file.remove(curGEOID)
   unlink("RoadData", recursive = TRUE, force = TRUE)
 }
-hello
 # map_df
 ```
 
 ```{r}
-library(sf)
-read_sf("tl_2023_01001_roads.shp")
-read_sf("tl_2023_01003_roads.shp")
-read_sf("tl_2023_01005_roads.shp")
-read_sf("tl_2023_19139_roads.shp")
-=======
-url1=paste0(GEOID_url[1])
-url11=str_c("https://www2.census.gov/geo/tiger/TIGER2023/ROADS/",url1)
-d=download.file(url11,dest="data.zip",method="auto")
-unzip("data.zip")
-
-
 h=read_sf("tl_2023_01001_roads.shp")
 h
 h1=h$FULLNAME
@@ -101,8 +80,6 @@ most=max(length(g$Rd),
 
 most_common=Road_suffixes[which(max(length(g$Rd),
     length(g$`Co Rd`),length(g$Ln),length(g$St),length(g$Dr),length(g$Ct),length(g$Ave),length(g$Cir))==most)]
-
->>>>>>> 9fceb23525d346fb9732e2602bd60c274745c617
 
 ```
 
