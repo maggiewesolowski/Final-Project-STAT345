@@ -50,7 +50,7 @@ Road_suffixes=c("Rd","Co Rd","Ln","St","Dr","Ct","Ave","Cir","82","Way","Loop","
 
 #gets all the GEOID's
 my_sf2 = list()
-for(i in 1:3){
+for(i in 1:3233){
   curGEOID = GEOID[i]
   GEOID_file = GEOID_url[i]
  url11=str_c("https://www2.census.gov/geo/tiger/TIGER2023/ROADS/", GEOID_file)
@@ -63,30 +63,23 @@ for(i in 1:3){
 }
 g=sapply(Road_suffixes,roads)
 
-most=max(length(g$Rd),
-    length(g$`Co Rd`),length(g$Ln),length(g$St),length(g$Dr),length(g$Ct),length(g$Ave),length(g$Cir),length(g$`82`),length(g$Way),length(g$Loop),length(g$Pl),length(g$Blvd))
-
-most_common=Road_suffixes[which(max(length(g$Rd),
-    length(g$`Co Rd`),length(g$Ln),length(g$St),length(g$Dr),length(g$Ct),length(g$Ave),length(g$Cir),length(g$`82`),length(g$Way),length(g$Loop),length(g$Pl),length(g$Blvd))==most)]
-
-split=my_sf$FULLNAME %>% str_split(.,"\\s") %>% lapply(.,tail,n=1) %>% unlist()
-table(split) %>% as.data.frame() %>% arrange(desc(Freq))
-head(split)
 
 d=c(length(g$Rd),
     length(g$`Co Rd`),length(g$Ln),length(g$St),length(g$Dr),length(g$Ct),length(g$Ave),length(g$Cir),length(g$`82`),length(g$Way),length(g$Loop),length(g$Pl),length(g$Blvd))
 
+#split=my_sf$FULLNAME %>% str_split(.,"\\s") %>% lapply(.,tail,n=1) %>% unlist()
+#table(split) %>% as.data.frame() %>% arrange(desc(Freq))
+
 names(d)=Road_suffixes
-slice_max(as.data.frame(d),d,n=2) %>% rownames
 temp=slice_max(as.data.frame(d),d,n=2) %>% rownames()
-temp[2]
 
-
-  my_sf2[[i]] = my_sf %>% mutate(GEOID = curGEOID) %>% mutate(MostCommon=most_common) %>% mutate(SecondMost=temp[2])
+  my_sf2[[i]] = my_sf %>% mutate(GEOID = curGEOID) %>% mutate(MostCommon=temp[1]) %>% mutate(SecondMost=temp[2])
   file.remove(curGEOID)
   unlink("RoadData", recursive = TRUE, force = TRUE)
 }
 # map_df
+
+
 ```
 
 ```{r}
