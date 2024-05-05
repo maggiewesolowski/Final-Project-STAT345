@@ -93,22 +93,28 @@ write_csv(final, "final.csv")
 
 library(tigris)
 library(ggplot2)
+library(ggthemes)
 
 counties <- counties(c("Alabama","Arizona", "Arkansas", "California","Colorado", "Connecticut", "Delware", "Florida", "Georgia", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin","Wyoming"), cb = TRUE)
 
 
+
+
+suffix_colors=c("Rd"="blue","Co Rd"="orange","Ln"="darkgreen", "St"="lightblue", "Dr"="yellow", "Ct"="red","Ave"=="purple","Cir"="lightgreen","82"="pink","Loop"="maroon","Pl"="black","Blvd"="grey")
+
+
 USA <- ggplot() +
-    geom_sf(data = final_combined, aes(fill = MostCommon))
+    geom_sf(data = final_combined, aes(fill = MostCommon))+scale_fill_manual(values=suffix_colors)
 
 USA
 
 USA2 <- ggplot() +
-    geom_sf(data = final_combined, aes(fill = SecondMost))
+    geom_sf(data = final_combined, aes(fill = SecondMost)) +scale_fill_manual(values=suffix_colors)
 
 USA2
 
 USA3 <- ggplot() +
-    geom_sf(data = final_combined, aes(fill = MostCommon=="Rd"))
+    geom_sf(data = final_combined, aes(fill = MostCommon=="Rd")) 
 
 USA3
 
