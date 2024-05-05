@@ -98,9 +98,21 @@ counties <- counties(c("Alabama","Arizona", "Arkansas", "California","Colorado",
 
 
 USA <- ggplot() +
-    geom_sf(data = counties, aes(fill = STATE_NAME))
+    geom_sf(data = final_combined, aes(fill = MostCommon))
 
 USA
+
+USA2 <- ggplot() +
+    geom_sf(data = final_combined, aes(fill = SecondMost))
+
+USA2
+
+USA3 <- ggplot() +
+    geom_sf(data = final_combined, aes(fill = MostCommon=="Rd"))
+
+USA3
+
+final_combined=merge(counties,final,by="GEOID")
 
 ```
 
